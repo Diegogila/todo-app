@@ -2,8 +2,10 @@ import { TodoCounter } from './components/TodoCounter';
 import { TodoSearch } from './components/TodoSearch';
 import { TodoList } from './components/TodoList';
 import { TodoItem } from './components/TodoItem';
-import { CreateTodoButton } from './components/TodoButton';
-import './App.css';
+import { CreateTodoButton } from './components/CreateTodoButton';
+import React, { useState } from 'react';
+import './styles/App.css'
+import { TodoFilter } from './components/TodoFilter';
 
 const defaultTodos = [
   {text:'Cortar cebolla', completed: false},
@@ -13,18 +15,20 @@ const defaultTodos = [
   {text:'Salir a comer', completed: false},
 ]
 
+
+
 function App() {
   return (
-    <>
-      <TodoCounter completed={15} total={20} />
-      <CreateTodoButton />
+    <main className='app-container'>
+      <TodoCounter completed={15} total={defaultTodos.length} />
       <TodoSearch />
-
+      <CreateTodoButton />
+      <TodoFilter />
       <TodoList>
         {defaultTodos.map((todo) => <TodoItem key={todo.text} text={todo.text} completed={todo.completed}/>)}
       </TodoList>
 
-    </>
+    </main>
   );
 }
 

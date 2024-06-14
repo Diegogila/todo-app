@@ -1,0 +1,10 @@
+.app-container{
+    display: grid;
+    justify-items: center;
+    row-gap: 26px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 0 16px;
+    background-color: #FDFFFB;
+    width: 100%;
+    min-height: 100vh;
+}

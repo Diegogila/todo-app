@@ -1,0 +1,13 @@
+
+.filters{
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+}
+
+.filters li{
+    list-style: none;
+    color: #365E32;
+}
