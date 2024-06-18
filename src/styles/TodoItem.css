@@ -1,0 +1,35 @@
+.todo-item{
+    position: relative;
+    display: flex;
+    width: 35%;
+    min-width: 288px;
+    background-color: #F6FFF4;
+    border-radius: 15px;
+    padding: 20px 12px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);;
+}
+
+.todo-item p{
+    display: inline;
+}
+
+.todo-item span{
+    width: 28px;
+    height: 28px;
+    border-radius: 50px;
+    background-color: palegreen;
+}
+
+.delete-todo{
+    position: absolute;
+    width: auto;
+    height: auto;
+    background:none;
+    top: 20px;
+    right: 12px;
+}
+
+.delete-todo img{
+    width: 12px;
+
+}

@@ -1,4 +1,4 @@
-button{
+.create-button{
     position: fixed;
     bottom: 12px;
     right: 12px;
@@ -10,9 +10,10 @@ button{
     height: 48px;
     border-radius: 50%;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+    z-index: 1;
 }
 
-button img{
+.create-button img{
     width:24px;
     height: 24px;
 }

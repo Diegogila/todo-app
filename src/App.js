@@ -8,10 +8,10 @@ import './styles/App.css'
 import { TodoFilter } from './components/TodoFilter';
 
 const defaultTodos = [
-  {text:'Cortar cebolla', completed: false},
+  {text:'Cortar cebolla ', completed: false},
   {text:'Bailar Macarena', completed: true},
   {text:'Estudiar', completed: false},
-  {text:'Hacer ejercicio', completed: true},
+  {text:'Lorem Ipsum is simply dummy text of the printing and typesetting industry', completed: true},
   {text:'Salir a comer', completed: false},
 ]
 

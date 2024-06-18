@@ -1,9 +1,12 @@
+import '../styles/TodoItem.css'
+import deleteButton from '../assets/icons/delete.svg'
+
 function TodoItem({text}){
     return (
-      <li>
+      <li className='todo-item'>
         <span>V</span>
         <p>{text}</p>
-        <span>X</span>
+        <button className='delete-todo'><img src={deleteButton}/></button>
       </li>
     );
   }
