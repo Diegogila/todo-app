@@ -4,5 +4,5 @@
     gap: 1.6em;
     width: 100%;
     justify-content: center;
-    flex-flow: wrap;
+    flex-wrap: wrap;
 }
