@@ -3,18 +3,15 @@ import deleteButton from '../assets/icons/delete.svg'
 import completedIcon from '../assets/icons/plus.svg'
 import { useState } from 'react';
 
-function TodoItem({text}){
-  const [completed, setCompleted] = useState({buttonStyle:''})
-  const handleClick = () => {
-
-  }
+function TodoItem({text, completed}){
+    const [completedFlag, setCompleted] = useState(completed)
     return (
       <li className='todo-item'>
-        <button className='todo-button todo-completed '>
+        <button className='todo-button'>
           <img src={completedIcon}/>
         </button>
         <p>{text}</p>
-        <button className='delete-todo'><img src={deleteButton}/></button>
+        <button onClick={() => setCompleted(true)} className='delete-todo'><img src={deleteButton}/></button>
       </li>
     );
   }

@@ -1,8 +1,8 @@
 import '../styles/CreateTodoButton.css'
 import icon from '../assets/icons/add.svg'
-function CreateTodoButton(){
+function CreateTodoButton({openModal}){
     return (
-      <button className='create-button'><img src={icon}/></button>
+      <button onClick={() => openModal(true)} className='create-button'><img src={icon}/></button>
     );
   }
 
