@@ -24,6 +24,7 @@
     border-radius: 15px;
     background-color: #FDFFFB;
     padding: 8px 8px;
+    resize: none;
     
 }
 
@@ -39,4 +40,5 @@
     height: 30px;
     width: 80px;
     background-color: #F6FFF4;
+    color: #365E32;
 }

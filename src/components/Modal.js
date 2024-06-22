@@ -1,7 +1,7 @@
 import {useState } from 'react';
 import '../styles/Modal.css'
 
-function Modal({isOpen,todos,createTodo}){
+function Modal({isOpen,newTodo}){
     const [todoText, setTodoText] = useState('')  
     
     return(
@@ -10,11 +10,7 @@ function Modal({isOpen,todos,createTodo}){
                 <textarea onChange={(e) => setTodoText(e.target.value)}placeholder="Type your next todo"/>
                 <div className='modal__buttons-container'>
                     <button onClick={() => isOpen(false)}>Cancel</button>
-                    <button onClick={() => {
-                        createTodo([...todos,{text:todoText, completed:false}])
-                        isOpen(false)
-                    }}>Create</button>
-
+                    <button onClick={()=> newTodo({text:todoText, completed:false})}>Create</button>
                 </div>
             </div>
         </div>
