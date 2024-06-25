@@ -8,15 +8,15 @@ import './styles/App.css'
 import { TodoFilter } from './components/TodoFilter';
 import { Modal } from './components/Modal';
 
-const defaultTodos = [
-  {text:'Cortar cebolla ', completed: false},
-  {text:'Bailar Macarena', completed: false},
+// const defaultTodos = [
+//   {text:'Cortar cebolla ', completed: false},
+//   {text:'Bailar Macarena', completed: false},
 
-]
+// ]
 
 
 function App() {
-  const [todos, setTodos] = useState(defaultTodos);
+  const [todos, setTodos] = useState([]);
   const [searchTarget, setSearchTarget] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   

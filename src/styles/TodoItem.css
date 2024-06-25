@@ -17,7 +17,9 @@
     white-space: nowrap;
 }
 
-.todo-button{
+
+
+.icon-check{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -26,6 +28,11 @@
     border-radius: 50px;
     margin: 0 12px;
     border: 1px solid #365E32;
+    background-color: #365E32;
+}
+
+.todo-check--completed{
+    
 }
 
 .todo-items--completed{
@@ -36,16 +43,11 @@
     background-color: #365E32;
 }
 
-.delete-todo{
+.icon-delete{
     position: absolute;
-    width: auto;
+    width: 12px;
     height: auto;
     background:none;
     top: 20px;
     right: 12px;
-}
-
-.delete-todo img{
-    width: 12px;
-
 }
