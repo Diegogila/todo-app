@@ -28,18 +28,17 @@
     border-radius: 50px;
     margin: 0 12px;
     border: 1px solid #365E32;
-    background-color: #365E32;
 }
 
 .todo-check--completed{
-    
+    background-color: #365E32;
 }
 
-.todo-items--completed{
+.todo-item--completed{
     text-decoration: line-through;
 }
 
-.todo-items--completed .todo-button{
+.todo-item--completed .icon-check{
     background-color: #365E32;
 }
 

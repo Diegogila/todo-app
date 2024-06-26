@@ -9,7 +9,7 @@ const iconTypes = {
 
 function TodoIcon(props){
     return (
-        <span className={`icon-${props.type}`}>
+        <span className={`icon-${props.type}${props.completed ? 'icon-check--completed': ''}`} onClick={props.func}>
             {iconTypes[props.type]}
         </span>
     );

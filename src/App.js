@@ -14,11 +14,29 @@ import { Modal } from './components/Modal';
 
 // ]
 
+// localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
+
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const localStorageTodos = localStorage.getItem('TODOS_V1')
+  let parsedTodos;
+
+  if (localStorageTodos) {
+    localStorage.setItem('TODOS_V1', JSON.stringify([]));
+    parsedTodos = [];
+  }else{
+    parsedTodos = JSON.parse(localStorageTodos);
+  }
+
+  const [todos, setTodos] = useState(parsedTodos);
   const [searchTarget, setSearchTarget] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  //Save and update todos
+  const saveTodos = (newTodos) => {
+    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
+    setTodos(newTodos);
+  }
   
   //Count states
   let completedTodos = todos.filter((todo) => !!todo.completed).length;
@@ -29,21 +47,21 @@ function App() {
 
   //Create a new todo from modal block
   const createTodoFunc = (newTodo) => {
-    setTodos([...todos,newTodo])
+    saveTodos([...todos,newTodo])
     setModalIsOpen(false)
   }
 
 
   const deleteTodo = (key) => {
     const currentTodosAlive = todos.filter((todo) => todo.text != key);
-    setTodos(currentTodosAlive);
+    saveTodos(currentTodosAlive);
   }
 
   const completeTodoToggle = (key) => {
     const newTodos = [...todos]
     const todoIntex = newTodos.findIndex((todo) => todo.text == key);
     newTodos[todoIntex].completed = newTodos[todoIntex].completed ? false : true;
-    setTodos(newTodos)
+    saveTodos(newTodos)
   }
 
 
@@ -58,8 +76,8 @@ function App() {
         key={todo.text} 
         text={todo.text}
         completed={todo.completed}
-        onComplete={completeTodoToggle}
-        deleteTodo={deleteTodo}
+        onComplete={() => completeTodoToggle(todo.text)}
+        deleteTodo={() => deleteTodo(todo.text)}
         />)}
       </TodoList>
       <CreateTodoButton todos={todos} openModal={setModalIsOpen}/>

@@ -1,7 +1,10 @@
 import React from "react"
+import { TodoIcon } from "./TodoIcon";
 
-function DeleteIcon({completed}){
-
+function DeleteIcon({deleteTodo}){
+    return (
+        <TodoIcon type='delete' func={deleteTodo}/>
+);
 }
 
-export {CompleteIcon}
+export {DeleteIcon}

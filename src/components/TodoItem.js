@@ -1,18 +1,14 @@
 import '../styles/TodoItem.css'
-import deleteButton from '../assets/icons/delete.svg'
-import completedIcon from '../assets/icons/completed.svg'
-import { TodoIcon } from './TodoIcon';
+import { CompleteIcon } from './CompleteIcon';
+import { DeleteIcon } from './DeleteIcon';
 
 function TodoItem({text,completed, deleteTodo, onComplete}){
   return (
-    <li className={`todo-item${completed ? " todo-items--completed": ""}`}>
-      <TodoIcon type='check'/>
-      <span className='icon-check' onClick={() => onComplete(text)}>
-        
-      </span>
+    <li className={`todo-item${completed ? " todo-item--completed": ""}`}>
+      <CompleteIcon type='check' onComplete={onComplete}/>
       <p>{text}</p>
-      <TodoIcon type='delete'/>
-      <button onClick={() => deleteTodo(text)} className='icon-delete'><img src={deleteButton}/></button>
+      <DeleteIcon type='delete' deleteTodo={deleteTodo}/>
+ 
     </li>
   );
   }
