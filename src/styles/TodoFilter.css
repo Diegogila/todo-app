@@ -10,4 +10,9 @@
 .filters li{
     list-style: none;
     color: #365E32;
+    cursor: pointer;
+}
+
+.filters .active{
+    color: red;
 }

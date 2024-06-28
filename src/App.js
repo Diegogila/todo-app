@@ -7,61 +7,58 @@ import React, { useState } from 'react';
 import './styles/App.css'
 import { TodoFilter } from './components/TodoFilter';
 import { Modal } from './components/Modal';
-
-// const defaultTodos = [
-//   {text:'Cortar cebolla ', completed: false},
-//   {text:'Bailar Macarena', completed: false},
-
-// ]
-
-// localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos));
+import {useLocalStorage} from './utils/useLocaleStorage'
 
 
 function App() {
-  const localStorageTodos = localStorage.getItem('TODOS_V1')
-  let parsedTodos;
-
-  if (localStorageTodos) {
-    localStorage.setItem('TODOS_V1', JSON.stringify([]));
-    parsedTodos = [];
-  }else{
-    parsedTodos = JSON.parse(localStorageTodos);
-  }
-
-  const [todos, setTodos] = useState(parsedTodos);
-  const [searchTarget, setSearchTarget] = useState('');
+  const [todos, setTodos] = useLocalStorage('TODOS_V1',[]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  //Save and update todos
-  const saveTodos = (newTodos) => {
-    localStorage.setItem('TODOS_V1', JSON.stringify(newTodos));
-    setTodos(newTodos);
-  }
+  const [searchTarget, setSearchTarget] = useState('');
   
   //Count states
   let completedTodos = todos.filter((todo) => !!todo.completed).length;
   let totalTodos = todos.length; 
+  
+  //Filter logic
+  const useFilterTodos = (fil) => {
+    const [filter, setFilter] = useState(fil);
+    let filteredTodos;
+    switch (filter) {
+      case 'completed':
+        filteredTodos = todos.filter(todo => todo.completed);
+        break;
+      case 'pending':
+        filteredTodos = todos.filter(todo => !todo.completed);
+        break;
+      default:
+        filteredTodos = todos;
+        break;
+    }
+    return [filteredTodos, setFilter];
+  }
 
-  //Search filter
-  const searchedTodos = todos.filter((todo) => todo.text.toLowerCase().includes(searchTarget.toLocaleLowerCase()))
+  const [filteredTodos, setFilter] = useFilterTodos('all');
+  
+  //Search logic
+  const searchedTodos = filteredTodos.filter((todo) => todo.text.toLowerCase().includes(searchTarget.toLocaleLowerCase()))
 
   //Create a new todo from modal block
   const createTodoFunc = (newTodo) => {
-    saveTodos([...todos,newTodo])
+    setTodos([...todos,newTodo])
     setModalIsOpen(false)
   }
 
 
   const deleteTodo = (key) => {
     const currentTodosAlive = todos.filter((todo) => todo.text != key);
-    saveTodos(currentTodosAlive);
+    setTodos(currentTodosAlive);
   }
 
   const completeTodoToggle = (key) => {
     const newTodos = [...todos]
     const todoIntex = newTodos.findIndex((todo) => todo.text == key);
     newTodos[todoIntex].completed = newTodos[todoIntex].completed ? false : true;
-    saveTodos(newTodos)
+    setTodos(newTodos)
   }
 
 
@@ -70,7 +67,7 @@ function App() {
       <TodoCounter completed={completedTodos} total={totalTodos} />
       <TodoSearch searchTarget={setSearchTarget}/>
       {modalIsOpen && <Modal isOpen={setModalIsOpen} newTodo={createTodoFunc}/>}
-      <TodoFilter />
+      <TodoFilter filter={setFilter}/>
       <TodoList>
         {searchedTodos.map((todo) => <TodoItem 
         key={todo.text} 
