@@ -8,11 +8,22 @@
 }
 
 .filters li{
+    display: flex;
+    flex-direction: column;
     list-style: none;
     color: #365E32;
     cursor: pointer;
+    user-select: none;
 }
 
 .filters .active{
-    color: red;
+    font-weight: 600;
+}
+
+.filters .active span{
+    background-color: #365E32;
+    border-radius: 15px;
+    height: 3px;
+    width: auto;
+    margin-top: 3px;
 }

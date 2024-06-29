@@ -3,8 +3,8 @@ import { ReactComponent as CheckSVG} from '../assets/icons/completed.svg'
 import { ReactComponent as DeleteSVG} from '../assets/icons/delete.svg'
 
 const iconTypes = {
-    "check": <CheckSVG/>,
-    "delete": <DeleteSVG />
+    "check": <CheckSVG className="icon-svg"/>,
+    "delete": <DeleteSVG className="icon-svg"/>
 }
 
 function TodoIcon(props){

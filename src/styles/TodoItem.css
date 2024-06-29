@@ -49,4 +49,9 @@
     background:none;
     top: 20px;
     right: 12px;
+    stroke:#365E32;
+}
+
+.icon-delete:hover .icon-svg{
+    stroke: red;
 }

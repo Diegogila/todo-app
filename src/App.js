@@ -11,15 +11,14 @@ import {useLocalStorage} from './utils/useLocaleStorage'
 
 
 function App() {
-  const [todos, setTodos] = useLocalStorage('TODOS_V1',[]);
+  const {item : todos, saveItem : setTodos, loading, error} = useLocalStorage('TODOS_V1',[]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [searchTarget, setSearchTarget] = useState('');
-  
   //Count states
   let completedTodos = todos.filter((todo) => !!todo.completed).length;
   let totalTodos = todos.length; 
   
-  //Filter logic
+  //Filter Hook logic
   const useFilterTodos = (fil) => {
     const [filter, setFilter] = useState(fil);
     let filteredTodos;
@@ -34,10 +33,10 @@ function App() {
         filteredTodos = todos;
         break;
     }
-    return [filteredTodos, setFilter];
+    return [filter ,filteredTodos, setFilter];
   }
 
-  const [filteredTodos, setFilter] = useFilterTodos('all');
+  const [filter ,filteredTodos, setFilter] = useFilterTodos('all');
   
   //Search logic
   const searchedTodos = filteredTodos.filter((todo) => todo.text.toLowerCase().includes(searchTarget.toLocaleLowerCase()))
@@ -50,13 +49,13 @@ function App() {
 
 
   const deleteTodo = (key) => {
-    const currentTodosAlive = todos.filter((todo) => todo.text != key);
+    const currentTodosAlive = todos.filter((todo) => todo.text !== key);
     setTodos(currentTodosAlive);
   }
 
   const completeTodoToggle = (key) => {
     const newTodos = [...todos]
-    const todoIntex = newTodos.findIndex((todo) => todo.text == key);
+    const todoIntex = newTodos.findIndex((todo) => todo.text === key);
     newTodos[todoIntex].completed = newTodos[todoIntex].completed ? false : true;
     setTodos(newTodos)
   }
@@ -67,8 +66,13 @@ function App() {
       <TodoCounter completed={completedTodos} total={totalTodos} />
       <TodoSearch searchTarget={setSearchTarget}/>
       {modalIsOpen && <Modal isOpen={setModalIsOpen} newTodo={createTodoFunc}/>}
-      <TodoFilter filter={setFilter}/>
+      <TodoFilter filter={filter} setFilter={setFilter}/>
       <TodoList>
+        {loading && <p>Loading...</p>}
+        {error && <p>Error</p>}
+        {!loading && searchedTodos === 0 && <p>Create your first TODO!!</p>}
+
+
         {searchedTodos.map((todo) => <TodoItem 
         key={todo.text} 
         text={todo.text}

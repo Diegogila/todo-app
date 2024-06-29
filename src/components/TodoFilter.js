@@ -1,18 +1,12 @@
 
-import { useRef } from 'react'
 import '../styles/TodoFilter.css'
 
-function TodoFilter({filter}){
-    const buttonRef = useRef(null)
-
-    const handleClick = (ref) => {
-        console.log(ref.current)
-    }
+function TodoFilter({filter,setFilter}){
     return (
         <ul className='filters'>
-            <li ref={buttonRef} onClick={() => handleClick(buttonRef)}>All</li>
-            <li ref={buttonRef} onClick={() => handleClick(buttonRef)}>Completed</li>
-            <li ref={buttonRef} onClick={() => handleClick(buttonRef)}>Pending</li>
+            <li className={filter === 'all'? 'active': ''} onClick={() => setFilter('all')}>All <span></span></li>
+            <li className={filter === 'completed'? 'active': ''} onClick={() => setFilter('completed')}>Completed<span></span></li>
+            <li className={filter === 'pending'? 'active': ''} onClick={() => setFilter('pending')}>Pending<span></span></li>
         </ul>
     );
 }

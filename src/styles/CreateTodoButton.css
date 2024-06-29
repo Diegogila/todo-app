@@ -11,9 +11,15 @@
     border-radius: 50%;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
     z-index: 1;
+
 }
 
 .create-button img{
     width:24px;
     height: 24px;
+}
+
+.create-button:hover img{
+    transform: rotate(180deg);
+    transition: all 1s ease;
 }
