@@ -7,23 +7,25 @@ function useLocalStorage(storageName, initialValue) {
   
   
   useEffect(() => {
-    try {
-      const localStorageItem = localStorage.getItem(storageName);
-      let parsedItem;
-  
-      if (!localStorageItem) {
-        localStorage.setItem(storageName, JSON.stringify(initialValue));
-        parsedItem = initialValue;
-      } else {
-        parsedItem = JSON.parse(localStorageItem);
-        setItem(parsedItem)
+    setTimeout(() => {
+      try {
+        const localStorageItem = localStorage.getItem(storageName);
+        let parsedItem;
+    
+        if (!localStorageItem) {
+          localStorage.setItem(storageName, JSON.stringify(initialValue));
+          parsedItem = initialValue;
+        } else {
+          parsedItem = JSON.parse(localStorageItem);
+          setItem(parsedItem)
+        }
+    
+        setLoading(false)
+      } catch (error) {
+        setLoading(false)
+        setError(true);
       }
-  
-      setLoading(false)
-    } catch (error) {
-      setLoading(false)
-      setError(true);
-    }
+    },2000);
   },[]);
 
   //Save and update todos

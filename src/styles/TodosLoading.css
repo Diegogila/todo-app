@@ -1,0 +1,24 @@
+.todo-skeleton{
+    display: flex;
+    width: 35%;
+    height: 60px;
+    min-width: 288px;
+    background-color: #f8fcf8;
+    border-radius: 15px;
+    padding: 20px 28px 20px 12px;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.15);
+    animation: shimmer 1.5s ease infinite;
+}
+
+
+@keyframes shimmer {
+    0% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0.3;
+    }
+}

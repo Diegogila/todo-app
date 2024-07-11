@@ -8,6 +8,9 @@ import './styles/App.css'
 import { TodoFilter } from './components/TodoFilter';
 import { Modal } from './components/Modal';
 import {useLocalStorage} from './utils/useLocaleStorage'
+import { TodosLoading } from './components/TodosLoading';
+import { TodosError } from './components/TodosError';
+import { EmptyTodos } from './components/EmptyTodos';
 
 
 function App() {
@@ -68,11 +71,9 @@ function App() {
       {modalIsOpen && <Modal isOpen={setModalIsOpen} newTodo={createTodoFunc}/>}
       <TodoFilter filter={filter} setFilter={setFilter}/>
       <TodoList>
-        {loading && <p>Loading...</p>}
+        {loading && <TodosLoading/>}
         {error && <p>Error</p>}
-        {!loading && searchedTodos === 0 && <p>Create your first TODO!!</p>}
-
-
+        {!loading && searchedTodos.length === 0 && filter=== 'all' && <p>Create your first TODO!!</p>}
         {searchedTodos.map((todo) => <TodoItem 
         key={todo.text} 
         text={todo.text}
