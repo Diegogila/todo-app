@@ -72,8 +72,8 @@ function App() {
       <TodoFilter filter={filter} setFilter={setFilter}/>
       <TodoList>
         {loading && <TodosLoading/>}
-        {error && <p>Error</p>}
-        {!loading && searchedTodos.length === 0 && filter=== 'all' && <p>Create your first TODO!!</p>}
+        {error && <TodosError/>}
+        {!loading && searchedTodos.length === 0 && filter=== 'all' && <EmptyTodos/>}
         {searchedTodos.map((todo) => <TodoItem 
         key={todo.text} 
         text={todo.text}
